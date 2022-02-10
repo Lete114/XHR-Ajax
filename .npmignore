@@ -1,0 +1,28 @@
+# git
+.git
+
+# vscode
+.vscode
+
+# project file
+/node_modules
+/public
+/test
+
+.editorconfig
+
+.eslintignore
+.eslintrc.yml
+
+.gitignore
+
+.npmignore
+
+.prettierignore
+.prettierrc.yml
+
+package-lock.json
+
+webpack.config.js
+
+
