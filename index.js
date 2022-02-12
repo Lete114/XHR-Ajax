@@ -1,5 +1,3 @@
-let obj = {}
-let xhr = {}
 const GET = 'GET'
 const e = encodeURIComponent
 
@@ -12,11 +10,11 @@ function defaultObject() {
   }
 }
 
-function setHeader() {
+function setHeader(xhr, obj) {
   for (const key in obj.headers) xhr.setRequestHeader(key, obj.headers[key])
 }
 
-function param() {
+function param(obj) {
   const data = obj.data
   const isGet = obj.method === GET
   const isData = Object.keys(data).length
@@ -33,10 +31,10 @@ function param() {
   }
 }
 
-function methods() {
-  param()
+function methods(xhr, obj) {
+  param(obj)
   xhr.open(obj.method, obj.url, obj.async, obj.username, obj.password)
-  setHeader()
+  setHeader(xhr, obj)
   switch (obj.method) {
     case GET:
       xhr.send()
@@ -47,7 +45,7 @@ function methods() {
   }
 }
 
-function Response() {
+function Response(xhr, obj) {
   try {
     const type =
       obj.responseType || xhr.getResponseHeader('Content-Type')?.split(';')[0]
@@ -85,10 +83,10 @@ function ajax(object) {
   if (!object) return object
   return new Promise((resolve, reject) => {
     if ('object' !== typeof object) object = { url: object }
-    xhr = new XMLHttpRequest()
-    obj = Object.assign(defaultObject(), object)
+    const xhr = new XMLHttpRequest()
+    const obj = Object.assign(defaultObject(), object)
     obj.method = obj.method.toUpperCase()
-    methods() // 请求方法
+    methods(xhr, obj) // 请求方法
 
     // 超时
     let timer
@@ -100,7 +98,7 @@ function ajax(object) {
           if (timer) clearTimeout(timer) // 清理超时(不执行xhr.abort())
 
           const isSuccess = xhr.status >= 200 && xhr.status < 300
-          if (isSuccess) resolve(Response())
+          if (isSuccess) resolve(Response(xhr, obj))
           else reject(xhr)
         }
       } catch (error) {

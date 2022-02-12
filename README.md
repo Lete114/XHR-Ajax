@@ -13,13 +13,6 @@
     <a href="https://github.com/Lete114/XHR-Ajax/blob/master/LICENSE"><img src="https://img.shields.io/github/license/Lete114/XHR-Ajax?color=FF5531" alt="MIT License"></a>
 </p>
 
-## 问题
-
-- Q1: 什么样的项目需要用到它？
-- A1: **轻量级、 少量的请求 一些简单的请求**
-- Q2: 它有哪写导入方式？
-- A2: **你可以使用: ES6, CommonJS, AMD, Script 标签**
-
 ## 安装
 
 Using npm:
@@ -31,13 +24,13 @@ npm install xhr-ajax --save
 Using jsDelivr CDN:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/xhr-ajax"></script>
+<script src="https://cdn.jsdelivr.net/npm/xhr-ajax/dist/ajax.js"></script>
 ```
 
 Using unpkg CDN:
 
 ```html
-<script src="https://unpkg.com/xhr-ajax"></script>
+<script src="https://unpkg.com/xhr-ajax/dist/ajax.js"></script>
 ```
 
 ## 使用案例
@@ -75,7 +68,7 @@ ajax({
 ### 浏览器
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/xhr-ajax"></script>
+<script src="https://cdn.jsdelivr.net/npm/xhr-ajax/dist/ajax.js"></script>
 <script>
   const url = 'https://example.com'
   // 你可以使用这些语法

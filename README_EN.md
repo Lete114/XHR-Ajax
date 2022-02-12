@@ -13,13 +13,6 @@
     <a href="https://github.com/Lete114/XHR-Ajax/blob/master/LICENSE"><img src="https://img.shields.io/github/license/Lete114/XHR-Ajax?color=FF5531" alt="MIT License"></a>
 </p>
 
-## Question
-
-- Q1: What kind of projects need to use it?
-- A1: **Lightweight, Fewer requests , some simple requests**
-- Q2: What import methods does it have?
-- A2: **You can use: ES6, CommonJS, AMD, Script tag**
-
 ## Installing
 
 Using npm:
@@ -31,13 +24,13 @@ npm install xhr-ajax --save
 Using jsDelivr CDN:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/xhr-ajax"></script>
+<script src="https://cdn.jsdelivr.net/npm/xhr-ajax/dist/ajax.js"></script>
 ```
 
 Using unpkg CDN:
 
 ```html
-<script src="https://unpkg.com/xhr-ajax"></script>
+<script src="https://unpkg.com/xhr-ajax/dist/ajax.js"></script>
 ```
 
 ## Example Usage
@@ -75,7 +68,7 @@ ajax({
 ### Browser
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/xhr-ajax"></script>
+<script src="https://cdn.jsdelivr.net/npm/xhr-ajax/dist/ajax.js"></script>
 <script>
   const url = 'https://example.com'
   // You can have these syntaxes
