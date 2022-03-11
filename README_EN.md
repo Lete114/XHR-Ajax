@@ -24,13 +24,13 @@ npm install xhr-ajax --save
 Using jsDelivr CDN:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/xhr-ajax/dist/ajax.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xhr-ajax/dist/ajax.min.js"></script>
 ```
 
 Using unpkg CDN:
 
 ```html
-<script src="https://unpkg.com/xhr-ajax/dist/ajax.js"></script>
+<script src="https://unpkg.com/xhr-ajax/dist/ajax.min.js"></script>
 ```
 
 ## Example Usage
@@ -68,7 +68,7 @@ ajax({
 ### Browser
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/xhr-ajax/dist/ajax.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xhr-ajax/dist/ajax.min.js"></script>
 <script>
   const url = 'https://example.com'
   // You can have these syntaxes

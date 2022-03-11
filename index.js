@@ -108,4 +108,4 @@ function ajax(object) {
   })
 }
 
-module.exports = ajax
+export default ajax

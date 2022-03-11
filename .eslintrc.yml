@@ -1,11 +1,11 @@
 env:
   node: true
-  es2021: true
+  es6: true
   browser: true
-  commonjs: true
 extends: eslint:recommended
 parserOptions:
-  ecmaVersion: 13
+  ecmaVersion: latest
+  sourceType: module
 rules:
   # off   或 0 - 关闭规则
   # warn  或 1 - 开启规则, 使用警告 程序不会退出

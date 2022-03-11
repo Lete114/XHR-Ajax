@@ -1,1 +1,119 @@
-!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.ajax=t():e.ajax=t()}(this,(function(){return e={497:function(e){function t(e){return t="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},t(e)}var o="GET",n=encodeURIComponent;e.exports=function(e){return e?new Promise((function(r,a){"object"!==t(e)&&(e={url:e});var s,c=new XMLHttpRequest,i=Object.assign({method:o,async:!0,data:{},headers:{}},e);i.method=i.method.toUpperCase(),function(e,t){switch(function(e){var t=e.data,r=e.method===o;if(Object.keys(t).length&&r){var a=[];for(var s in t)Object.prototype.hasOwnProperty.call(t,s)&&a.push(n(s)+"="+n(t[s]));e.url+=/\?$/.test(e.url)?"":"?",e.url+=a.join("&")}}(t),e.open(t.method,t.url,t.async,t.username,t.password),function(e,t){for(var o in t.headers)e.setRequestHeader(o,t.headers[o])}(e,t),t.method){case o:e.send();break;case"POST":e.send(JSON.stringify(t.data))}}(c,i),i.timeout&&(s=setTimeout((function(){return c.abort()}),i.timeout)),c.onreadystatechange=function(){try{4===c.readyState&&(s&&clearTimeout(s),c.status>=200&&c.status<300?r(function(e,t){try{var o,n=t.responseType||(null===(o=e.getResponseHeader("Content-Type"))||void 0===o?void 0:o.split(";")[0]),r=e.responseText,a=e.responseXML;if(n&&(r||a))switch(decodeURIComponent(n)){case"text/xml":case"xml":return a;case"text/json":case"application/json":case"text/javascript":case"application/javascript":case"application/x-javascript":case"json":return JSON.parse(r)}return r}catch(t){return e}}(c,i)):a(c))}catch(e){a(e)}}})):e}}},t={},function o(n){var r=t[n];if(void 0!==r)return r.exports;var a=t[n]={exports:{}};return e[n](a,a.exports,o),a.exports}(497);var e,t}));
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.ajax = factory());
+})(this, (function () { 'use strict';
+
+  const GET = 'GET';
+  const e = encodeURIComponent;
+
+  function defaultObject() {
+    return {
+      method: GET,
+      async: true,
+      data: {},
+      headers: {}
+    }
+  }
+
+  function setHeader(xhr, obj) {
+    for (const key in obj.headers) xhr.setRequestHeader(key, obj.headers[key]);
+  }
+
+  function param(obj) {
+    const data = obj.data;
+    const isGet = obj.method === GET;
+    const isData = Object.keys(data).length;
+    if (isData && isGet) {
+      const arr = [];
+      for (const i in data) {
+        const isHasOwnProperty = Object.prototype.hasOwnProperty.call(data, i);
+        if (isHasOwnProperty) {
+          arr.push(e(i) + '=' + e(data[i]));
+        }
+      }
+      obj.url += /\?$/.test(obj.url) ? '' : '?';
+      obj.url += arr.join('&');
+    }
+  }
+
+  function methods(xhr, obj) {
+    param(obj);
+    xhr.open(obj.method, obj.url, obj.async, obj.username, obj.password);
+    setHeader(xhr, obj);
+    switch (obj.method) {
+      case GET:
+        xhr.send();
+        break
+      case 'POST':
+        xhr.send(JSON.stringify(obj.data));
+        break
+    }
+  }
+
+  function Response(xhr, obj) {
+    try {
+      const type =
+        obj.responseType || xhr.getResponseHeader('Content-Type')?.split(';')[0];
+
+      const text = xhr.responseText;
+      const xml = xhr.responseXML;
+
+      if (type && (text || xml)) {
+        switch (decodeURIComponent(type)) {
+          case 'text/xml':
+          case 'xml':
+            return xml
+          case 'text/json':
+          case 'application/json':
+          case 'text/javascript':
+          case 'application/javascript':
+          case 'application/x-javascript':
+          case 'json':
+            return JSON.parse(text)
+        }
+      }
+      return text
+    } catch (e) {
+      return xhr
+    }
+  }
+
+  /**
+   *
+   * 封装ajax请求
+   * @param {Object} obj 请求参数
+   * @returns {Promise}
+   */
+  function ajax(object) {
+    if (!object) return object
+    return new Promise((resolve, reject) => {
+      if ('object' !== typeof object) object = { url: object };
+      const xhr = new XMLHttpRequest();
+      const obj = Object.assign(defaultObject(), object);
+      obj.method = obj.method.toUpperCase();
+      methods(xhr, obj); // 请求方法
+
+      // 超时
+      let timer;
+      if (obj.timeout) timer = setTimeout(() => xhr.abort(), obj.timeout);
+
+      xhr.onreadystatechange = () => {
+        try {
+          if (xhr.readyState === 4) {
+            if (timer) clearTimeout(timer); // 清理超时(不执行xhr.abort())
+
+            const isSuccess = xhr.status >= 200 && xhr.status < 300;
+            if (isSuccess) resolve(Response(xhr, obj));
+            else reject(xhr);
+          }
+        } catch (error) {
+          reject(error);
+        }
+      };
+    })
+  }
+
+  return ajax;
+
+}));
