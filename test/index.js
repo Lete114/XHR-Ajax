@@ -57,7 +57,7 @@ describe('Request tests', () => {
 
   it('Not request parameters and only one request address', async () => {
     const data = await ajax(url)
-    assert.strictEqual(data, '{}')
+    assert.strictEqual(JSON.stringify(data), '{}')
   })
 })
 
@@ -86,7 +86,7 @@ describe('Get request (Default)', () => {
 
   it('Only key without value', async () => {
     const data = await ajax(url + '?name=&age=')
-    const condition = data === '{"name":"","age":""}'
+    const condition = JSON.stringify(data) === '{"name":"","age":""}'
     assert.ok(condition)
   })
 })
@@ -94,7 +94,7 @@ describe('Get request (Default)', () => {
 describe('Post request', () => {
   it('Not request params', async () => {
     const data = await ajax({ url, method: 'post' })
-    const condition = data === '{}'
+    const condition = JSON.stringify(data) === '{}'
     assert.ok(condition)
   })
 

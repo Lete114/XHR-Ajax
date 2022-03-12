@@ -8,8 +8,8 @@
 <p align="center">一个简单的浏览器 XMLHttpRequest 请求模块</p>
 
 <p align="center">
-    <a href="https://github.com/Lete114/XHR-Ajax/releases/"><img src="https://img.shields.io/npm/v/xhr-ajax" alt="Version"></a>
-    <a href="https://github.com/Lete114/XHR-Ajax/tree/main"><img src="https://img.shields.io/github/package-json/v/Lete114/XHR-Ajax/main?color=%231ab1ad&label=main" alt="dev"></a>
+    <a href="https://github.com/Lete114/XHR-Ajax/releases/"><img src="https://img.shields.io/npm/v/xhr-ajax?logo=npm" alt="Version"></a>
+    <a href="https://github.com/Lete114/XHR-Ajax/tree/main"><img src="https://img.shields.io/github/package-json/v/Lete114/XHR-Ajax/main?color=%231ab1ad&label=main&logo=github" alt="dev"></a>
     <a href="https://github.com/Lete114/XHR-Ajax/blob/master/LICENSE"><img src="https://img.shields.io/github/license/Lete114/XHR-Ajax?color=FF5531" alt="MIT License"></a>
 </p>
 
@@ -104,7 +104,7 @@ ajax({
 ```bash
 npm install # 安装依赖
 npm run server # 启动一个本地后台测试服务器
-npm run test # 启动一个前端测试服务器
+npm run dev # 启动一个前端测试服务器
 npm run lint # 你在提交之前，需要对代码进行语法检查
 ```
 

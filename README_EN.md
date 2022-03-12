@@ -8,8 +8,8 @@
 <p align="center">A simple browser XMLHttpRequest request module</p>
 
 <p align="center">
-    <a href="https://github.com/Lete114/XHR-Ajax/releases/"><img src="https://img.shields.io/npm/v/xhr-ajax" alt="Version"></a>
-    <a href="https://github.com/Lete114/XHR-Ajax/tree/main"><img src="https://img.shields.io/github/package-json/v/Lete114/XHR-Ajax/main?color=%231ab1ad&label=main" alt="dev"></a>
+    <a href="https://github.com/Lete114/XHR-Ajax/releases/"><img src="https://img.shields.io/npm/v/xhr-ajax?logo=npm" alt="Version"></a>
+    <a href="https://github.com/Lete114/XHR-Ajax/tree/main"><img src="https://img.shields.io/github/package-json/v/Lete114/XHR-Ajax/main?color=%231ab1ad&label=main&logo=github" alt="dev"></a>
     <a href="https://github.com/Lete114/XHR-Ajax/blob/master/LICENSE"><img src="https://img.shields.io/github/license/Lete114/XHR-Ajax?color=FF5531" alt="MIT License"></a>
 </p>
 
@@ -104,7 +104,7 @@ Cloning the repository to the local computer
 ```bash
 npm install # Installing Dependencies
 npm run server # Start a local backend test server
-npm run test # Start a local front-end test server
+npm run dev # Start a local front-end test server
 npm run lint # You need to syntax check your code before submitting it
 ```
 

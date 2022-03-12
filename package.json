@@ -1,11 +1,14 @@
 {
   "name": "xhr-ajax",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "一个简单的浏览器 XMLHttpRequest 请求模块 | A simple browser XMLHttpRequest request module",
-  "main": "./dist/ajax.js",
+  "main": "dist/ajax.cjs.js",
+  "module": "dist/ajax.esm.js",
+  "unpkg": "dist/ajax.js",
+  "jsdelivr": "dist/ajax.js",
   "scripts": {
-    "test": "npx webpack serve --mode=development --devtool=inline-source-map",
-    "build": "npx rollup -c && npx rollup index.js -f umd > dist/ajax.js -n ajax",
+    "dev": "npx rollup -c rollup/dev.js",
+    "build": "npx rollup -c rollup/prod.js",
     "server": "node test/server.js",
     "lint": "npx eslint . && npx prettier --check .",
     "lint:fix": "npx eslint --fix . && npx prettier --check --write ."
@@ -37,14 +40,13 @@
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-node-resolve": "^13.1.3",
     "babel-loader": "^8.2.3",
-    "body-data": "^1.0.3",
+    "body-data": "^1.0.4",
     "eslint": "^8.8.0",
     "mocha": "^9.2.0",
     "prettier": "^2.5.1",
     "rollup": "^2.70.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "webpack": "^5.68.0",
-    "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4"
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-serve": "^1.1.0",
+    "rollup-plugin-terser": "^7.0.2"
   }
 }

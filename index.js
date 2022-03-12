@@ -10,6 +10,14 @@ function defaultObject() {
   }
 }
 
+function isJSON(t) {
+  try {
+    return JSON.parse(t)
+  } catch (error) {
+    return t
+  }
+}
+
 function setHeader(xhr, obj) {
   for (const key in obj.headers) xhr.setRequestHeader(key, obj.headers[key])
 }
@@ -45,34 +53,6 @@ function methods(xhr, obj) {
   }
 }
 
-function Response(xhr, obj) {
-  try {
-    const type =
-      obj.responseType || xhr.getResponseHeader('Content-Type')?.split(';')[0]
-
-    const text = xhr.responseText
-    const xml = xhr.responseXML
-
-    if (type && (text || xml)) {
-      switch (decodeURIComponent(type)) {
-        case 'text/xml':
-        case 'xml':
-          return xml
-        case 'text/json':
-        case 'application/json':
-        case 'text/javascript':
-        case 'application/javascript':
-        case 'application/x-javascript':
-        case 'json':
-          return JSON.parse(text)
-      }
-    }
-    return text
-  } catch (e) {
-    return xhr
-  }
-}
-
 /**
  *
  * 封装ajax请求
@@ -98,7 +78,7 @@ function ajax(object) {
           if (timer) clearTimeout(timer) // 清理超时(不执行xhr.abort())
 
           const isSuccess = xhr.status >= 200 && xhr.status < 300
-          if (isSuccess) resolve(Response(xhr, obj))
+          if (isSuccess) resolve(isJSON(xhr.responseText))
           else reject(xhr)
         }
       } catch (error) {
